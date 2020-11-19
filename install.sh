@@ -41,18 +41,11 @@ read -p "IP Address[]: " LANIP
 read -p "Netmask[]: " LANNETMASK
 read -p "Gateway[]: " LANGATEWAY 
 
-##postgresql-config.sh input
-read -p "Postgresql Username[]: " SQLUSERNAME
-read -p "Postgresql Password[]: " SQLPASSWORD
-
 ##hostapd-config.sh input
 read -p "SSID Name[]: " SSID
 
 ##freeradius-config.sh input
-echo "Connection info sql"
-read -p "Server[]: " IPSERVERRADIUS
-read -p "Port[]: " PORT
-read -p "Radius password[]: " RADIUSPASSWD
+read -p "Freeradius Password[]: " RADIUSPASSWD
 
 ##bond-config.sh input
 echo "Hotspot Domain"
@@ -85,14 +78,11 @@ fi
 ##Configure dhcp file
 $(pwd)/src/dhcp-config.sh "$LANIP" "$LANNETMASK" "$LANGATEWAY" "$WIRELESS"
 
-##Configure postgresql file
-$(pwd)/src/postgresql-config.sh "$SQLUSERNAME" "$SQLPASSWORD"
-
 ##Configure hostapd file
 $(pwd)/src/hostapd-config.sh "$SSID" "$WIRELESS"
 
 ##Configure freeradius file
-$(pwd)/src/freeradius-config.sh "$IPSERVERRADIUS" "$PORT" "$SQLUSERNAME" "$SQLPASSWORD" "$RADIUSPASSWD"
+# $(pwd)/src/freeradius-config.sh "$IPSERVERRADIUS" "$PORT" "$SQLUSERNAME" "$SQLPASSWORD" "$RADIUSPASSWD"
 
 ##Configure chilli file
 $(pwd)/src/coovachilli-config.sh "$WIRE" "$WIRELESS" "$LANIP" "$LANNETMASK" "$LANGATEWAY" "$SSID" "$RADIUSPASSWD" "$DOMAIN"
