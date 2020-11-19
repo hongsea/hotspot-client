@@ -45,6 +45,7 @@ read -p "Gateway[]: " LANGATEWAY
 read -p "SSID Name[]: " SSID
 
 ##freeradius-config.sh input
+read -p "Freeradius Server[]: " RADIUSSERVER
 read -p "Freeradius Password[]: " RADIUSPASSWD
 
 ##bond-config.sh input
@@ -85,7 +86,7 @@ $(pwd)/src/hostapd-config.sh "$SSID" "$WIRELESS"
 # $(pwd)/src/freeradius-config.sh "$IPSERVERRADIUS" "$PORT" "$SQLUSERNAME" "$SQLPASSWORD" "$RADIUSPASSWD"
 
 ##Configure chilli file
-$(pwd)/src/coovachilli-config.sh "$WIRE" "$WIRELESS" "$LANIP" "$LANNETMASK" "$LANGATEWAY" "$SSID" "$RADIUSPASSWD" "$DOMAIN"
+$(pwd)/src/coovachilli-config.sh "$WIRE" "$WIRELESS" "$LANIP" "$LANNETMASK" "$LANGATEWAY" "$SSID" "$RADIUSPASSWD" "$DOMAIN" "$RADIUSSERVER"
 
 ##Configure bind file
 $(pwd)/src/bind-config.sh "$DOMAIN" "$LANIP"
